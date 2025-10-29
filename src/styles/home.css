@@ -756,3 +756,35 @@
 html {
   scroll-behavior: smooth;
 }
+
+.stat-item {
+  text-align: center;
+  transition: transform 0.3s ease;
+}
+
+.stat-item:hover {
+  transform: translateY(-5px);
+}
+
+.stat-number {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--primary-color, #2b2b2b);
+  overflow: hidden;
+  display: inline-block;
+  animation: slot-reveal 0.8s ease-in-out;
+}
+
+@keyframes slot-reveal {
+  0% {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  60% {
+    transform: translateY(-10%);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(0);
+  }
+}

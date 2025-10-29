@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import '../styles/home.css';
+import StatItem from "../components/StatItem";
 
 interface Feature {
   icon: string;
@@ -165,13 +166,8 @@ const Home: React.FC = () => {
 
               {/* Stats */}
               <div className="stats-grid">
-                {stats.map((stat, idx) => (
-                  <div key={idx} className="stat-item">
-                    <div className="stat-number">{stat.number}</div>
-                    <div className="stat-label">{stat.label}</div>
-                  </div>
-                ))}
-              </div>
+   {stats.map((s, i) => <StatItem key={i} number={s.number} label={s.label} delay={i * 200} />)}
+</div>
             </div>
 
             <div className="hero-card-container">
