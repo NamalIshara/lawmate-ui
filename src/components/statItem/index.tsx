@@ -1,4 +1,4 @@
-// src/components/StatItem.tsx
+// src/components/statItem.tsx
 import React, { useEffect, useRef, useState } from "react";
 
 interface StatItemProps {
