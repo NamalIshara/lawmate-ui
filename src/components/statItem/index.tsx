@@ -1,79 +1,120 @@
-// src/components/statItem.tsx
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from 'react';
+import '../../styles/statItem.css';
 
 interface StatItemProps {
-  number: string;
+  number: string;       
   label: string;
-  delay?: number;
+  delay?: number;          
+
+  className?: string;
+  numberClassName?: string;
+  labelClassName?: string;
+  style?: React.CSSProperties;
 }
 
-function useCountUp(target: number, duration: number, start: boolean) {
-  const [count, setCount] = useState(0);
-
-  useEffect(() => {
-    if (!start) return;
-    let startTime: number | null = null;
-
-    const animate = (timestamp: number) => {
-      if (!startTime) startTime = timestamp;
-      const progress = timestamp - startTime;
-      const progressRatio = Math.min(progress / duration, 1);
-      setCount(Math.floor(progressRatio * target));
-
-      if (progress < duration) requestAnimationFrame(animate);
-    };
-
-    requestAnimationFrame(animate);
-  }, [target, duration, start]);
-
-  return count;
-}
-
-const DigitSegment: React.FC<{ digits: string; start: boolean; duration?: number }> = ({ digits, start, duration = 1200 }) => {
-  const numericTarget = parseInt(digits.replace(/,/g, ""), 10) || 0;
-  const count = useCountUp(numericTarget, duration, start);
-  return <span>{count.toLocaleString()}</span>;
+const formatWithCommas = (n: number, decimals = 0) => {
+  if (decimals > 0) return n.toFixed(decimals);
+  return Math.floor(n).toLocaleString();
 };
 
-const StatItem: React.FC<StatItemProps> = ({ number, label, delay = 0 }) => {
+const extractNumericPrefix = (s: string) => {
+  const m = s.match(/^([\d,]+(?:\.\d+)?)/);
+  if (!m) return { numeric: null, rawNumericString: '', suffix: s };
+  const raw = m[1];
+  const cleaned = raw.replace(/,/g, '');
+  const numeric = cleaned.includes('.') ? parseFloat(cleaned) : parseInt(cleaned, 10);
+  const suffix = s.slice(raw.length);
+  return { numeric, rawNumericString: raw, suffix };
+};
+
+const StatItem: React.FC<StatItemProps> = ({
+  number,
+  label,
+  delay = 0,
+  className = '',
+  numberClassName = '',
+  labelClassName = '',
+  style
+}) => {
   const ref = useRef<HTMLDivElement | null>(null);
-  const [visible, setVisible] = useState(false);
+  const [display, setDisplay] = useState<string>(number); 
+  const animatedRef = useRef(false);
 
   useEffect(() => {
+    animatedRef.current = false;
+    setDisplay(number);
+  }, [number]);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+
     const obs = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setTimeout(() => setVisible(true), delay);
-            obs.disconnect();
+          if (entry.isIntersecting && !animatedRef.current) {
+            animatedRef.current = true;
+
+            setTimeout(() => {
+              startAnimation(number, setDisplay);
+            }, delay);
           }
         });
       },
-      { threshold: 0.3 }
+      { threshold: 0.5 } 
     );
 
-    if (ref.current) obs.observe(ref.current);
+    obs.observe(el);
     return () => obs.disconnect();
-  }, [delay]);
-
-
-  const parts = number.split(/(\d[\d,]*)/);
+  }, [number, delay]);
 
   return (
-    <div ref={ref} className="stat-item">
-      <div className="stat-number">
-        {parts.map((part, i) => {
-          
-          if (/^\d[\d,]*$/.test(part)) {
-            return <DigitSegment key={i} digits={part} start={visible} />;
-          }
-          
-          return <span key={i}>{part}</span>;
-        })}
+    <div ref={ref} className={`stat-item ${className}`} style={style}>
+      <div className={`stat-number ${numberClassName}`} aria-hidden>
+        {display}
       </div>
-      <div className="stat-label">{label}</div>
+      <div className={`stat-label ${labelClassName}`}>
+        {label}
+      </div>
     </div>
   );
 };
 
 export default StatItem;
+
+/* Helpers */
+
+function startAnimation(targetStr: string, setDisplay: (v: string) => void) {
+  const { numeric, rawNumericString, suffix } = extractNumericPrefix(targetStr);
+
+  if (numeric === null) {
+    setDisplay(targetStr);
+    return;
+  }
+
+  const decimals = rawNumericString.includes('.') ? (rawNumericString.split('.')[1].length) : 0;
+  const targetValue = numeric;
+  const duration = 900; 
+  const startTime = performance.now();
+
+  const tick = (now: number) => {
+    const elapsed = now - startTime;
+    const progress = Math.min(elapsed / duration, 1);
+    const eased = 1 - Math.pow(1 - progress, 3);
+
+    const current = targetValue * eased;
+    const formatted = decimals > 0
+      ? Number(current.toFixed(decimals)).toLocaleString(undefined, { minimumFractionDigits: decimals, maximumFractionDigits: decimals })
+      : formatWithCommas(Math.round(current));
+
+    setDisplay(`${formatted}${suffix}`);
+
+    if (progress < 1) {
+      requestAnimationFrame(tick);
+    } else {
+      setDisplay(`${rawNumericString}${suffix}`);
+    }
+  };
+
+  requestAnimationFrame(tick);
+}
