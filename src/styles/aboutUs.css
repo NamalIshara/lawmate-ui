@@ -296,3 +296,18 @@
         right: 5px;
     }
 }
+.team-image-wrapper:hover {
+    transform: none !important;
+    transition: none !important;
+}
+
+.team-image-wrapper,
+.team-social-link {
+    cursor: pointer !important;
+}
+
+.team-social-links {
+    position: relative;
+    z-index: 5;
+}
+
