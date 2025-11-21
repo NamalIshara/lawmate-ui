@@ -1,6 +1,6 @@
 import React from 'react';
 import '../../styles/hero.css';
-import StatItem from "../statItem";
+import StatItem from "../StatItem";
 
 interface Stat {
   number: string;
