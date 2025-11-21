@@ -17,11 +17,8 @@ const Landing: React.FC = () => {
         <AboutUs />
         {/*<Features />*/}
         {/*<HowItWorks />*/}
-<<<<<<< HEAD
-=======
         {/*<AboutUs />*/}
         <ContactUs />
->>>>>>> 1bb010e6e69f27c0ba7de658e5b85a190c2e8e04
         {/*<ContactUs />*/}
         <Footer />
       </div>
