@@ -31,7 +31,7 @@ const AboutUs: React.FC = () => {
             name: "Devindi Nimalrathna",
             designation: "Business Analyst",
             image: devindiPhoto,
-            github: "https://github.com/kasunsilva",
+            github: "https://github.com/NelunikaNimalrathna",
             linkedin: "https://www.linkedin.com/in/devindinimalrathna/?originalSubdomain=lk"
         },
         {
