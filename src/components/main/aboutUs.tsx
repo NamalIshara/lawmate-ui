@@ -3,6 +3,9 @@ import '../../styles/aboutUs.css';
 import shavindiPhoto from './../../assets/shavindi.jpg';
 import pasinduPhoto from './../../assets/pasidu.png';
 import gihanPhoto from './../../assets/gihan.jpg';
+import isharaPhoto from './../../assets/ishara.jpg'
+import devindiPhoto from './../../assets/devindi.jpg';
+import benuriPhoto from './../../assets/benuri.jpg';
 
 interface TeamMember {
     name: string;
@@ -21,43 +24,43 @@ const AboutUs: React.FC = () => {
             name: "Gihan Kanishka",
             designation: "Project Manager",
             image: gihanPhoto,
-            github: "https://github.com/nimalperera",
-            linkedin: "https://linkedin.com/in/nimalperera"
+            github: "https://github.com/Gihanks",
+            linkedin: "https://www.linkedin.com/in/gihanks?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app "
         },
         {
             name: "Devindi Nimalrathna",
             designation: "Business Analyst",
-            image: "https://ui-avatars.com/api/?name=Kasun+Silva&background=09065a&color=fff&size=200",
+            image: devindiPhoto,
             github: "https://github.com/kasunsilva",
-            linkedin: "https://linkedin.com/in/kasunsilva"
+            linkedin: "https://www.linkedin.com/in/devindinimalrathna/?originalSubdomain=lk"
         },
         {
             name: "Shavindi Liyanage",
             designation: "Full Stack Engineer",
             image: shavindiPhoto,
             github: "https://github.com/ShavindiSanthupamaLiyanage",
-            linkedin: "https://www.linkedin.com/in/shavindi-liyanage-782b26282"
+            linkedin: "https://www.linkedin.com/in/shavindi-liyanage-782b26282?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"
         },
         {
             name: "Namal Ishara",
             designation: "Full Stack Engineer",
-            image: "https://ui-avatars.com/api/?name=Dilshan+Rajapaksa&background=100c5b&color=fff&size=200",
-            github: "https://github.com/dilshanrajapaksa",
-            linkedin: "https://linkedin.com/in/dilshanrajapaksa"
+            image: isharaPhoto,
+            github: "https://github.com/NamalIshara",
+            linkedin: "https://www.linkedin.com/in/ishara-namal-04a917269?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"
         },
         {
             name: "Pasindu Kaushalya",
             designation: "Machine Learning Engineer",
             image: pasinduPhoto,
-            github: "https://github.com/sanduniw",
-            linkedin: "https://linkedin.com/in/sanduniw"
+            github: "https://github.com/dragonrator",
+            linkedin: "https://www.linkedin.com/in/pasindu-kaushalya-134b25282"
         },
         {
             name: "Benuri Palihakkara",
             designation: "Quality Assurance Engineer",
-            image: "https://ui-avatars.com/api/?name=Chamara+Bandara&background=05042d&color=fff&size=200",
-            github: "https://github.com/chamarabandara",
-            linkedin: "https://linkedin.com/in/chamarabandara"
+            image: benuriPhoto,
+            github: "https://github.com/BenuriChathurya",
+            linkedin: "https://www.linkedin.com/in/benuri-chathurya-935b03289?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"
         }
     ];
 
