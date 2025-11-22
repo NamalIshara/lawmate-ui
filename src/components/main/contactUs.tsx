@@ -104,7 +104,7 @@ const ContactUs: React.FC = () => {
 
 
   return (
-    <section className="contact-section">
+    <section id="contact" className="contact-section">
       <div className="contact-container">
         <header className="contact-header">
           <h2>Contact Us</h2>
