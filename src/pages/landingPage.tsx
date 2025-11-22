@@ -1,13 +1,11 @@
 import React from 'react';
+import '../styles/global.css';
 import Header from '../components/main/header.tsx';
 import Hero from '../components/main/hero.tsx';
-// import Features from '../components/main/features.tsx';
+import Features from '../components/main/features.tsx';
 import HowItWorks from '../components/main/howItWorks.tsx';
-// import AboutUs from '../components/main/aboutUs.tsx';
-// import HowItWorks from '../components/main/howItWorks.tsx';
 import ContactUs from '../components/main/contactUs.tsx';
 import Footer from '../components/main/footer.tsx';
-import '../styles/global.css';
 import AboutUs from '../components/main/aboutUs.tsx';
 
 const Landing: React.FC = () => {
@@ -16,14 +14,7 @@ const Landing: React.FC = () => {
         <Header />
         <Hero />
         <Features />
-        {/*<HowItWorks />*/}
-        {/*<AboutUs />*/}
-        {/*<ContactUs />*/}
-
-        {<HowItWorks />}
-        <AboutUs />
-
-        {<HowItWorks />}
+        <HowItWorks />
         <AboutUs />
         <ContactUs />
         <Footer />

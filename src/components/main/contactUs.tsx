@@ -56,7 +56,6 @@ const ContactUs: React.FC = () => {
     if (!values.message.trim()) {
       newErrors.message = "Please enter your message.";
     }
-
     return newErrors;
   };
 
@@ -101,7 +100,6 @@ const ContactUs: React.FC = () => {
     setIsSubmitting(false);
   }
 };
-
 
   return (
     <section id="contact" className="contact-section">
@@ -205,7 +203,8 @@ const ContactUs: React.FC = () => {
               <p>Follow us on social media for updates and legal tips</p>
 
               <a
-                href="#"
+                href="https://facebook.com"
+                target="_blank"
                 className="social-link facebook"
                 aria-label="Visit our Facebook page"
               >
