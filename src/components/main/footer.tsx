@@ -46,7 +46,7 @@ const Footer: React.FC = () => {
                         <div className="footer-links">
                             <a href="#home" onClick={(e) => { e.preventDefault(); scrollToSection('home'); }} className="footer-link">Home</a>
                             <a href="#features" onClick={(e) => { e.preventDefault(); scrollToSection('features'); }} className="footer-link">Features</a>
-                            <a href="#how" onClick={(e) => { e.preventDefault(); scrollToSection('features'); }} className="footer-link">How It Works</a>
+                            <a href="#how-it-works" onClick={(e) => { e.preventDefault(); scrollToSection('how-it-works'); }} className="footer-link">How It Works</a>
                             <a href="#about" onClick={(e) => { e.preventDefault(); scrollToSection('about'); }} className="footer-link">About Us</a>
                             <a href="#contact" onClick={(e) => { e.preventDefault(); scrollToSection('contact'); }} className="footer-link">Contact Us</a>
                         </div>

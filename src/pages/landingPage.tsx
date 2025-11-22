@@ -15,11 +15,9 @@ const Landing: React.FC = () => {
       <div className="lawmate-container">
         <Header />
         <Hero />
-        <AboutUs />
-        {/*<Features />*/}
+
         {<HowItWorks />}
-        {/*<AboutUs />*/}
-        {/*<HowItWorks />*/}
+        <AboutUs />
         <ContactUs />
         <Footer />
       </div>
