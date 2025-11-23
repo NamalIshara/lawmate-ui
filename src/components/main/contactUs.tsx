@@ -60,48 +60,6 @@ const ContactUs: React.FC = () => {
     return newErrors;
   };
 
-//  const handleSubmit = async (e: FormEvent) => {
-//   e.preventDefault();
-//   setSuccessMessage("");
-//   const validationErrors = validate();
-//
-//   if (Object.keys(validationErrors).length > 0) {
-//     setErrors(validationErrors);
-//     return;
-//   }
-//
-//   try {
-//     setIsSubmitting(true);
-//
-//     // 🔹 CALL BACKEND HERE
-//     const response = await fetch("http://localhost:5000/send-email", {
-//       method: "POST",
-//       headers: { "Content-Type": "application/json" },
-//       body: JSON.stringify(values),
-//     });
-//
-//     const data = await response.json();
-//
-//     if (!response.ok || !data.success) {
-//       throw new Error(data.message || "Failed to send email");
-//     }
-//
-//     // If success
-//     setSuccessMessage("Thank you! Your message has been sent.");
-//     setValues({
-//       fullName: "",
-//       email: "",
-//       subject: "",
-//       message: "",
-//     });
-//   } catch (err) {
-//     console.error("Error submitting contact form", err);
-//     setSuccessMessage("Something went wrong. Please try again later.");
-//   } finally {
-//     setIsSubmitting(false);
-//   }
-// };
-
     const handleSubmit = async (e: FormEvent) => {
         e.preventDefault();
         setSuccessMessage("");
