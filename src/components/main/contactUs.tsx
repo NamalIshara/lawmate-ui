@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import type { FormEvent, ChangeEvent } from "react";
 import "../../styles/contactUs.css";
+import emailjs from "emailjs-com";
 
 interface ContactFormValues {
   fullName: string;
@@ -59,47 +60,91 @@ const ContactUs: React.FC = () => {
     return newErrors;
   };
 
- const handleSubmit = async (e: FormEvent) => {
-  e.preventDefault();
-  setSuccessMessage("");
-  const validationErrors = validate();
+//  const handleSubmit = async (e: FormEvent) => {
+//   e.preventDefault();
+//   setSuccessMessage("");
+//   const validationErrors = validate();
+//
+//   if (Object.keys(validationErrors).length > 0) {
+//     setErrors(validationErrors);
+//     return;
+//   }
+//
+//   try {
+//     setIsSubmitting(true);
+//
+//     // 🔹 CALL BACKEND HERE
+//     const response = await fetch("http://localhost:5000/send-email", {
+//       method: "POST",
+//       headers: { "Content-Type": "application/json" },
+//       body: JSON.stringify(values),
+//     });
+//
+//     const data = await response.json();
+//
+//     if (!response.ok || !data.success) {
+//       throw new Error(data.message || "Failed to send email");
+//     }
+//
+//     // If success
+//     setSuccessMessage("Thank you! Your message has been sent.");
+//     setValues({
+//       fullName: "",
+//       email: "",
+//       subject: "",
+//       message: "",
+//     });
+//   } catch (err) {
+//     console.error("Error submitting contact form", err);
+//     setSuccessMessage("Something went wrong. Please try again later.");
+//   } finally {
+//     setIsSubmitting(false);
+//   }
+// };
 
-  if (Object.keys(validationErrors).length > 0) {
-    setErrors(validationErrors);
-    return;
-  }
+    const handleSubmit = async (e: FormEvent) => {
+        e.preventDefault();
+        setSuccessMessage("");
+        const validationErrors = validate();
 
-  try {
-    setIsSubmitting(true);
+        if (Object.keys(validationErrors).length > 0) {
+            setErrors(validationErrors);
+            return;
+        }
 
-    // 🔹 CALL BACKEND HERE
-    const response = await fetch("http://localhost:5000/send-email", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(values),
-    });
+        try {
+            setIsSubmitting(true);
 
-    const data = await response.json();
+            const result = await emailjs.send(
+                import.meta.env.VITE_EMAILJS_SERVICE_ID,
+                import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
+                {
+                    fullName: values.fullName,
+                    email: values.email,
+                    subject: values.subject,
+                    message: values.message,
+                },
+                import.meta.env.VITE_EMAILJS_PUBLIC_KEY
+            );
 
-    if (!response.ok || !data.success) {
-      throw new Error(data.message || "Failed to send email");
-    }
+            console.log(result.text);
 
-    // If success
-    setSuccessMessage("Thank you! Your message has been sent.");
-    setValues({
-      fullName: "",
-      email: "",
-      subject: "",
-      message: "",
-    });
-  } catch (err) {
-    console.error("Error submitting contact form", err);
-    setSuccessMessage("Something went wrong. Please try again later.");
-  } finally {
-    setIsSubmitting(false);
-  }
-};
+            setSuccessMessage("Thank you! Your message has been sent.");
+
+            setValues({
+                fullName: "",
+                email: "",
+                subject: "",
+                message: "",
+            });
+
+        } catch (error) {
+            console.error("Email send error:", error);
+            setSuccessMessage("Something went wrong. Please try again later.");
+        } finally {
+            setIsSubmitting(false);
+        }
+    };
 
   return (
     <section id="contact" className="contact-section">
