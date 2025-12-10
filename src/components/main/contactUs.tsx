@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import type { FormEvent, ChangeEvent } from "react";
 import "../../styles/contactUs.css";
+import emailjs from "emailjs-com";
 
 interface ContactFormValues {
   fullName: string;
