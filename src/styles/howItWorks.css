@@ -121,19 +121,95 @@
     line-height: 1.6;
 }
 
+/*.step-arrow {*/
+/*    display: none;*/
+/*    position: absolute;*/
+/*    top: 50%;*/
+/*    right: -16px;*/
+/*    transform: translateY(-50%);*/
+/*    font-size: 32px;*/
+/*    color: #100c5b;*/
+/*    animation: pulse 2s ease-in-out infinite;*/
+/*}*/
+
+/*@media (min-width: 768px) {*/
+/*    .step-arrow {*/
+/*        display: block;*/
+/*    }*/
+/*}*/
+
 .step-arrow {
     display: none;
     position: absolute;
     top: 50%;
-    right: -16px;
+    right: -46px; /* Positioned in the middle of the gap */
     transform: translateY(-50%);
-    font-size: 32px;
-    color: #100c5b;
-    animation: pulse 2s ease-in-out infinite;
+    width: 60px;
+    height: 60px;
+    z-index: 5;
 }
 
 @media (min-width: 768px) {
     .step-arrow {
         display: block;
+    }
+}
+
+/* Flowing line */
+.step-arrow::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 45px;
+    height: 4px;
+    background: linear-gradient(90deg,
+    transparent 0%,
+    #100c5b 30%,
+    #09065a 70%,
+    transparent 100%
+    );
+    background-size: 200% 100%;
+    transform: translateY(-50%);
+    border-radius: 2px;
+    animation: flowLine 2s ease-in-out infinite;
+    box-shadow: 0 0 10px rgba(16, 12, 91, 0.4);
+}
+
+/* Arrow head */
+.step-arrow::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    right: 5px;
+    transform: translateY(-50%);
+    width: 0;
+    height: 0;
+    border-left: 16px solid #09065a;
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    animation: arrowheadPulse 2s ease-in-out infinite;
+    filter: drop-shadow(0 0 8px rgba(16, 12, 91, 0.5));
+}
+
+@keyframes flowLine {
+    0%, 100% {
+        background-position: 0% 0%;
+        opacity: 0.6;
+    }
+    50% {
+        background-position: 100% 0%;
+        opacity: 1;
+    }
+}
+
+@keyframes arrowheadPulse {
+    0%, 100% {
+        transform: translateY(-50%) translateX(0) scale(1);
+        filter: drop-shadow(0 0 8px rgba(16, 12, 91, 0.5));
+    }
+    50% {
+        transform: translateY(-50%) translateX(5px) scale(1.15);
+        filter: drop-shadow(0 0 15px rgba(16, 12, 91, 0.8));
     }
 }

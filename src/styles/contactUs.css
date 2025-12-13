@@ -1,12 +1,32 @@
 .contact-section {
-  background: linear-gradient(122.43deg, #05042d 0%, #09065a 50%, #100c5b 100%);
+  background: linear-gradient(135deg, #05042d 0%, #09065a 50%, #100c5b 100%);
   color: #ffffff;
   padding: 80px 16px;
+  background-size: 200% 200%;
+  animation: gradient-shift 20s ease infinite;
+  position: relative;
+  overflow: hidden;
+}
+
+/* MISSING: Floating dot pattern */
+.contact-section::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  background-size: 50px 50px;
+  animation: float-slow 30s linear infinite;
+  z-index: 0;
 }
 
 .contact-container {
   max-width: 1100px;
   margin: 0 auto;
+  position: relative;
+  z-index: 1;
 }
 
 .contact-header {
@@ -15,13 +35,14 @@
 }
 
 .contact-header h2 {
-  font-size: 32px;
-  margin-bottom: 8px;
+  font-size: 40px;
+  margin-bottom: 16px;
+  font-weight: 700;
 }
 
 .contact-header p {
   color: #b9c1ff;
-  font-size: 15px;
+  font-size: 20px;
 }
 
 .contact-grid {
@@ -38,6 +59,13 @@
   border-radius: 24px;
   padding: 20px 24px;
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.35);
+  transition: all 0.3s ease; /* ADDED */
+}
+
+/* MISSING: Card hover effect */
+.contact-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
 }
 
 .contact-form-card {
@@ -47,7 +75,15 @@
   backdrop-filter: none;
   -webkit-backdrop-filter: none;
   padding: 24px 28px 16px;
+  transition: all 0.3s ease; /* ADDED */
 }
+
+/* MISSING: Form card hover effect */
+.contact-form-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 25px 70px rgba(0, 0, 0, 0.4);
+}
+
 .contact-form-card form {
   margin: 0;
   padding: 0;
@@ -71,6 +107,7 @@
   margin-bottom: 6px;
   color: #4b5563;
 }
+
 .field-label {
   display: flex;
   justify-content: space-between;
@@ -89,7 +126,7 @@
   padding: 10px 12px;
   font-size: 14px;
   outline: none;
-  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  transition: all 0.3s ease; /* UPDATED */
 }
 
 .form-group input::placeholder,
@@ -104,9 +141,11 @@
 
 .form-group input:focus,
 .form-group textarea:focus {
-  border-color: #4f46e5;
-  box-shadow: 0 0 0 1px #4f46e5;
+  border-color: #100c5b;
+  box-shadow: 0 0 0 4px rgba(16, 12, 91, 0.1);
+  transform: translateY(-2px); /* ADDED */
 }
+
 .primary-button {
   width: 100%;
   border: none;
@@ -158,6 +197,21 @@
   font-size: 13px;
 }
 
+/* MISSING: Success icon styles */
+.success-icon {
+  width: 80px;
+  height: 80px;
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 40px;
+  margin: 0 auto 24px;
+  animation: successPulse 0.6s ease-out;
+}
+
 .contact-card h3 {
   margin-bottom: 4px;
   font-size: 18px;
@@ -168,6 +222,7 @@
   font-size: 14px;
   color: #b9c1ff;
 }
+
 .social-link {
   display: flex;
   align-items: center;
@@ -179,12 +234,49 @@
   margin-bottom: 8px;
   text-decoration: none;
   font-size: 14px;
-  transition: background 0.15s ease, transform 0.1s ease;
+  transition: all 0.3s ease; /* UPDATED */
+  position: relative; /* ADDED */
+  overflow: hidden; /* ADDED */
+  border: 2px solid transparent; /* ADDED */
+}
+
+/* MISSING: Shine effect on social links */
+.social-link::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  transition: left 0.5s;
+}
+
+.social-link:hover::before {
+  left: 100%;
 }
 
 .social-link:hover {
   background: rgba(255, 255, 255, 0.08);
-  transform: translateY(-1px);
+  transform: translateX(10px) scale(1.02); /* UPDATED */
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3); /* ADDED */
+}
+
+/* MISSING: Border colors for social links */
+.social-link.facebook:hover {
+  border-color: #1877f2;
+}
+
+.social-link.linkedin:hover {
+  border-color: #0077b5;
+}
+
+.social-link.whatsapp:hover {
+  border-color: #25d366;
+}
+
+.social-link.instagram:hover {
+  border-color: #e4405f;
 }
 
 .social-icon {
@@ -207,7 +299,14 @@
   gap: 14px;
   align-items: center;
   margin-bottom: 18px;
+  transition: all 0.3s ease; /* ADDED */
 }
+
+/* MISSING: Contact item hover effect */
+.contact-item:hover {
+  transform: translateX(5px);
+}
+
 .contact-item p {
   margin: 0;
   line-height: 1.4;
@@ -221,6 +320,13 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: all 0.3s ease; /* ADDED */
+}
+
+/* MISSING: Icon scale on hover */
+.contact-item:hover .contact-item-icon {
+  background: rgba(255, 255, 255, 0.3);
+  transform: scale(1.1);
 }
 
 .contact-item-icon svg {
@@ -232,6 +338,39 @@
   font-size: 13px;
   font-weight: 600;
   color: #b9c1ff;
+}
+
+/* MISSING: All keyframe animations */
+@keyframes gradient-shift {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes float-slow {
+  0% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+  100% {
+    transform: translate(50px, 50px) rotate(360deg);
+  }
+}
+
+@keyframes successPulse {
+  0% {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
 }
 
 @media (max-width: 900px) {

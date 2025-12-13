@@ -11,15 +11,15 @@ const HowItWorks: React.FC = () => {
     const [activeWorkflow, setActiveWorkflow] = useState<'client' | 'lawyer'>('client');
 
     const clientSteps: Step[] = [
-        { number: "01", title: "Create account", desc: "Create an account to get the help to resolve your legal case." },
-        { number: "02", title: "Use chatbot", desc: "Get the help of chatbot to identify the law area" },
+        { number: "01", title: "Create Account", desc: "Create an account to get the help to resolve your legal case." },
+        { number: "02", title: "Chat with Lawly", desc: "Get the help of chatbot to identify the law area" },
         { number: "03", title: "Make Appointments", desc: "Search for lawyers and book sessions to get the legal help." }
     ];
 
     const lawyerSteps: Step[] = [
         { number: "01", title: "Create Account", desc: "Sign up with your professional details and credentials" },
         { number: "02", title: "Connect with Clients", desc: "Start receiving case requests and build your practice" },
-        { number: "03", title: "Share you insights", desc: "Share yout articles in knopwledge hub" }  
+        { number: "03", title: "Share your Insights", desc: "Share your articles in Knowledge Hub" }
     ];
 
     return (
@@ -54,7 +54,9 @@ const HowItWorks: React.FC = () => {
                                 <div className="step-number">{step.number}</div>
                                 <h3 className="step-title">{step.title}</h3>
                                 <p className="step-description">{step.desc}</p>
-                                {idx < clientSteps.length - 1 && <div className="step-arrow">→</div>}
+                                {idx < clientSteps.length - 1 && <div className="step-arrow">
+                                    {/*→*/}
+                                </div>}
                             </div>
                         ))}
                     </div>
@@ -67,7 +69,9 @@ const HowItWorks: React.FC = () => {
                                 <div className="step-number">{step.number}</div>
                                 <h3 className="step-title">{step.title}</h3>
                                 <p className="step-description">{step.desc}</p>
-                                {idx < lawyerSteps.length - 1 && <div className="step-arrow">→</div>}
+                                {idx < lawyerSteps.length - 1 && <div className="step-arrow">
+                                    {/*→*/}
+                                </div>}
                             </div>
                         ))}
                     </div>

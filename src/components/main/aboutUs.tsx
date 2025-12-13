@@ -36,14 +36,14 @@ const AboutUs: React.FC = () => {
         },
         {
             name: "Shavindi Liyanage",
-            designation: "Full Stack Engineer",
+            designation: "Full Stack Developer",
             image: shavindiPhoto,
             github: "https://github.com/ShavindiSanthupamaLiyanage",
             linkedin: "https://www.linkedin.com/in/shavindi-liyanage-782b26282?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"
         },
         {
             name: "Namal Ishara",
-            designation: "Full Stack Engineer",
+            designation: "Full Stack Developer",
             image: isharaPhoto,
             github: "https://github.com/NamalIshara",
             linkedin: "https://www.linkedin.com/in/ishara-namal-04a917269?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"
